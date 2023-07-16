@@ -17,10 +17,10 @@
             use Illuminate\Database\Eloquent\Factories\HasFactory;
             use Illuminate\Database\Eloquent\Model;
             
-            class Tbl_frame_category extends Model
+            class Tbl_roti_category extends Model
             {
                 use HasFactory;
-                protected $table = "tbl_frame_category";
+                protected $table = "tbl_roti_category";
                 protected $fillable = [
                     "name",
 "deleted",

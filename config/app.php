@@ -165,6 +165,7 @@ return [
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
         ConsoleTVs\Charts\ChartsServiceProvider::class,
+        Darryldecode\Cart\CartServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -229,6 +230,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Cart' => Darryldecode\Cart\Facades\CartFacade::class
 
     ],
 

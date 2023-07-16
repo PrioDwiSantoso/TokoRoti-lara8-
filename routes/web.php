@@ -31,7 +31,8 @@ use App\Http\Controllers\Back\Setting_menu\Setting_menuController;
 use App\Http\Controllers\Back\Permissions\PermissionsController;
 
 use App\Http\Controllers\back\Tbl_roti_category\Tbl_roti_categoryController;
-
+use App\Http\Controllers\front\FrontCartController;
+use App\Models\Tbl_product;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -72,6 +73,16 @@ Route::get('/login', function () {
 });
 
 Route::get('/', [FrontLandingController::class, 'index'])->name('frontlanding');
+
+Route::get('/products', [Tbl_product::class, 'product_list'])->name('products');
+
+##cart
+
+Route::post('/products/cart/add', [FrontCartController::class, 'add_cart'])->name('add_cart');
+Route::get('/products/cart/view', [FrontCartController::class, 'view_cart'])->name('view_cart');
+Route::post('/products/cart/update', [FrontCartController::class, 'update_cart'])->name('update-cart');
+Route::get('/products/cart/{id}/remove', [FrontCartController::class, 'remove_item'])->name('remove-item');
+Route::get('/products/cart/clear', [FrontCartController::class, 'clear_item'])->name('clear-item');
 
 
 Route::get('/crud', [CrudBuilderController::class, 'index'])->name('crud.index');

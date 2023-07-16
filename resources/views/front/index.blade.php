@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>MultiShop - Online Shop Website Template</title>
+    <title>TokoRoti</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -84,8 +84,8 @@
         <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
             <div class="col-lg-4">
                 <a href="" class="text-decoration-none">
-                    <span class="h1 text-uppercase text-primary bg-dark px-2">Multi</span>
-                    <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Shop</span>
+                    <span class="h1 text-uppercase text-primary bg-dark px-2">Lara</span>
+                    <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Bread</span>
                 </a>
             </div>
             <div class="col-lg-4 col-6 text-left">
@@ -173,10 +173,13 @@
                                 <span class="badge text-secondary border border-secondary rounded-circle"
                                     style="padding-bottom: 2px;">0</span>
                             </a>
-                            <a href="" class="btn px-0 ml-3">
+                            @php
+                                $cart_array = cardArray();
+                            @endphp
+                            <a href="{{ route('view_cart') }}" class="btn px-0 ml-3">
                                 <i class="fas fa-shopping-cart text-primary"></i>
                                 <span class="badge text-secondary border border-secondary rounded-circle"
-                                    style="padding-bottom: 2px;">0</span>
+                                    style="padding-bottom: 2px;"><?= count($cart_array) ?></span>
                             </a>
                         </div>
                     </div>
@@ -474,22 +477,16 @@
                     <div class="product-item bg-light mb-4">
                         <div class="product-img position-relative overflow-hidden">
                             <img class="img-fluid w-100" src="../assets/img/rotimaryam.jpg" alt="">
+
                             <div class="product-action">
-                                <a class="btn btn-outline-dark btn-square" href=""><i
-                                        class="fa fa-shopping-cart"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i
-                                        class="far fa-heart"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i
-                                        class="fa fa-sync-alt"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i
-                                        class="fa fa-search"></i></a>
+
                             </div>
                         </div>
                         <div class="text-center py-4">
                             <a class="h6 text-decoration-none text-truncate" href="">{{ $item->name }}</a>
                             <div class="d-flex align-items-center justify-content-center mt-2">
-                                <h5>Rp.12.000</h5>
-                                <h6 class="text-muted ml-2"><del>Rp.15.000</del></h6>
+                                <h5>RP {{ number_format($item->price) }}</h5>
+                                <h6 class="text-muted ml-2"><del>Rp. 14,000</del></h6>
                             </div>
                             <div class="d-flex align-items-center justify-content-center mb-1">
                                 <small class="fa fa-star text-primary mr-1"></small>
@@ -498,6 +495,20 @@
                                 <small class="fa fa-star text-primary mr-1"></small>
                                 <small class="fa fa-star text-primary mr-1"></small>
                                 <small>(99)</small>
+
+                            </div>
+                            <div class="d-flex align-items-center justify-content-center mt-2">
+
+                                <form method="POST" action="{{ route('add_cart') }}" enctype="multipart/form-data">
+                                    @csrf
+                                    <input name="id" value="{{ $item->id }}" hidden>
+                                    <input name="name" value="{{ $item->name }}" hidden>
+                                    <input name="price" value="{{ $item->price }}" hidden>
+                                    <input name="image" value="{{ $item->image }}" hidden>
+                                    <button class="bg-blue-950 rounded-md text-sm px-3 py-1 font-bold">Add
+                                        To Cart</button>
+
+                                </form>
                             </div>
                         </div>
                     </div>
